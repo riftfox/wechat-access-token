@@ -1,0 +1,26 @@
+{
+  "name": "riftfox/wechat-access-token",
+  "description": "微信公众号获取接口调用凭据API SDK",
+  "minimum-stability": "dev",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Riftfox",
+      "email": "riftfox@riftfox.com"
+    }
+  ],
+  "require": {
+    "psr/http-factory": "@stable",
+    "riftfox/wechat-token": "dev-main"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "@stable",
+    "guzzle/http": "@stable"
+  },
+  "autoload": {
+    "psr-4": {
+      "Riftfox\\Wechat\\AccessToken\\": "src/",
+      "Riftfox\\Wechat\\AccessToken\\tests": "tests/"
+    }
+  }
+}
