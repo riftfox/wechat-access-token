@@ -16,10 +16,10 @@ class AccessTokenProvider extends TokenProvider
     private RequestFactoryInterface $requestFactory;
     private UriFactoryInterface $uriFactory;
     public function __construct(ClientInterface $client,
-                                RequestFactoryInterface $requestFactory,
-                                UriFactoryInterface $uriFactory,
                                 TokenFactoryInterface $tokenFactory,
-                                ExceptionFactoryInterface $exceptionFactory)
+                                ExceptionFactoryInterface $exceptionFactory,
+                                RequestFactoryInterface $requestFactory,
+                                UriFactoryInterface $uriFactory)
     {
         parent::__construct($client, $tokenFactory, $exceptionFactory);
         $this->requestFactory = $requestFactory;
@@ -29,7 +29,7 @@ class AccessTokenProvider extends TokenProvider
     public function getRequest(ApplicationInterface $application, bool $forceRefresh = false): RequestInterface
     {
         $uri = $this->uriFactory->createUri(self::TOKEN_URL);
-        $uri->withQuery(http_build_query([
+        $uri = $uri->withQuery(http_build_query([
             'grant_type' => 'client_credential',
             'appid' => $application->getAppId(),
             'secret' => $application->getAppSecret(),
